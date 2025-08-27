@@ -1,0 +1,14 @@
+// Galería
+section.gallery-section.section-padding#gallery
+    .container
+        .row
+            .col.col-xs-12
+                .section-title
+                    h2 Nuestra galería
+        .row
+            .col.col-xs-12
+                .gallery-grids
+                    each val in [1,2,3,4]
+                        .grid
+                            a.fancybox(href=`assets/images/img_er/${val}.jpeg`, data-fancybox-group="gall-1")
+                                img(src=`assets/images/img_er/${val}.jpeg` alt="Foto de la boda")

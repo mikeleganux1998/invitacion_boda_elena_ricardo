@@ -1,0 +1,26 @@
+// RSVP
+section.rsvp-section.section-padding#rsvp
+    .container
+        .row
+            .col.col-xs-12
+                .rspv-form
+                    h3 ¿Asistirás?
+                    p Por favor confirma tu asistencia antes del 20 Octubre 2025
+                    .left-flower
+                    .right-flower
+                    form#rsvp-form.clearfix.form.validate-rsvp-form.row(method="post")
+                        div
+                            input.form-control(type="text" name="name" placeholder="Nombre*")
+                        div
+                            input.form-control(type="email" name="email" placeholder="Correo electrónico*")
+
+
+                        div
+                            textarea.form-control(name="notes" placeholder="Tu mensaje*")
+                        .submit-btn
+                            button.theme-btn(type="submit") Confirmar asistencia
+                            #loader
+                                i.ti-reload
+                        .success-error-message
+                            #success Gracias
+                            #error Ocurrió un error al enviar el correo. Por favor intenta de nuevo más tarde.
