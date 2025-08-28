@@ -5,7 +5,7 @@ const morgan = require('morgan')
 const path = require('path')
 const bodyParser = require('body-parser')
 
-//const db = require('./conf/db')
+const db = require('./conf/db')
 const app = express()
 
 //configuraciones 
@@ -28,7 +28,7 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')))
 
 //rutas
 app.use(require('./viewEngine/routes'))
-//app.use('/api', require('./routes/_api'))
+app.use('/api', require('./routes/_api'))
 
 //Inicializando el servidor
 app.listen(app.get('port'), () => {

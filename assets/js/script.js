@@ -552,54 +552,69 @@
     if ($("#rsvp-form").length) {
         $("#rsvp-form").validate({
             rules: {
-                name: {
-                    required: true,
-                    minlength: 2
-                },
-                email: "required",
-
-                guest: {
-                    required: true
-                },
-
-                events: {
-                    required: true
-                }
-
+                name: { required: true, minlength: 2 },
+                email: { required: true, email: true },
+                phone: { required: true, digits: true, minlength: 10, maxlength: 10 },
+                confirmation: { required: true } // 👈 nuevo campo
             },
-
             messages: {
-                name: "Please enter your name",
-                email: "Please enter your email",
-                guest: "Select your number of guest",
-                events: "Select your event list"
+                name: "Por favor ingresa tu nombre",
+                email: "Por favor ingresa un correo válido",
+                phone: {
+                    required: "Por favor ingresa tu teléfono",
+                    digits: "Solo se permiten números",
+                    minlength: "El teléfono debe tener 10 dígitos",
+                    maxlength: "El teléfono debe tener 10 dígitos"
+                },
+                confirmation: "Por favor confirma tu asistencia" // 👈 mensaje nuevo
             },
 
             submitHandler: function (form) {
                 $("#loader").css("display", "inline-block");
+
+                const formData = {
+                    name: $("input[name='name']").val(),
+                    email: $("input[name='email']").val(),
+                    phone: $("input[name='phone']").val(),
+                    confirmation: $("select[name='confirmation']").val(),
+                    notes: $("textarea[name='notes']").val()
+                };
+
                 $.ajax({
                     type: "POST",
-                    url: "mail.php",
-                    data: $(form).serialize(),
-                    success: function () {
-                        $( "#loader").hide();
-                        $( "#success").slideDown( "slow" );
-                        setTimeout(function() {
-                        $( "#success").slideUp( "slow" );
-                        }, 3000);
+                    url: "/api/whatsapp/send",
+                    data: JSON.stringify(formData),
+                    contentType: "application/json",
+                    success: function (response) {
+                        $("#loader").hide();
+
+                        if (response.message) {
+                            // mostramos el mensaje que envía el backend
+                            $("#success").text(response.message).slideDown("slow");
+                            setTimeout(function() {
+                                $("#success").slideUp("slow");
+                            }, 4000);
+                        } else {
+                            // mensaje por defecto
+                            $("#success").text("Confirmación recibida, gracias.").slideDown("slow");
+                            setTimeout(function() {
+                                $("#success").slideUp("slow");
+                            }, 4000);
+                        }
+
                         form.reset();
                     },
-                    error: function() {
-                        $( "#loader").hide();
-                        $( "#error").slideDown( "slow" );
+                    error: function () {
+                        $("#loader").hide();
+                        $("#error").slideDown("slow");
                         setTimeout(function() {
-                        $( "#error").slideUp( "slow" );
-                        }, 3000);
+                            $("#error").slideUp("slow");
+                        }, 4000);
                     }
                 });
-                return false; // required to block normal submit since you used ajax
-            }
 
+                return false;
+            }
         });
     }
 
