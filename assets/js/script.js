@@ -675,10 +675,16 @@
 
     var audio = $("#bg-music")[0];
 
-    // primer click/touch en cualquier parte activa la música
+    // Safari iOS necesita playsinline y touchstart
     $(document).one("click touchstart", function() {
         audio.muted = false;
-        audio.play();
+        var playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+            playPromise.catch(function(error) {
+                console.log("Autoplay bloqueado, usuario debe interactuar:", error);
+            });
+        }
     });
 
 

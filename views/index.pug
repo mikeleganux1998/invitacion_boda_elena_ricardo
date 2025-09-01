@@ -5,8 +5,8 @@ block content
     include components/header
 
     //- Aquí metemos el audio global
-    audio#bg-music(autoplay loop muted)
-        source(src="../assets/audio/musica.mp3" type="audio/mpeg")
+    audio#bg-music(autoplay loop muted playsinline)
+        source(src="/assets/audio/musica.mp3" type="audio/mpeg")
 
     include components/hero
     include components/verse
