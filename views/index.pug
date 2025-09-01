@@ -4,20 +4,17 @@ block content
     include components/preloader
     include components/header
 
+    //- Aquí metemos el audio global
+    audio#bg-music(autoplay loop muted)
+        source(src="../assets/audio/musica.mp3" type="audio/mpeg")
+
     include components/hero
     include components/verse
     include components/wedding-date
-
     include components/story
-
-
     include components/couple
     include components/gift
     include components/rsvp
-
     include components/verse_2
-
     include components/gallery
-
-
     include components/footer

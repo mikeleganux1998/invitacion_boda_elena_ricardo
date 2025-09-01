@@ -670,5 +670,17 @@
     });
 
 
+    //------------------------ MUSICA
+
+
+    var audio = $("#bg-music")[0];
+
+    // primer click/touch en cualquier parte activa la música
+    $(document).one("click touchstart", function() {
+        audio.muted = false;
+        audio.play();
+    });
+
+
 
 })(window.jQuery);
