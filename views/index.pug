@@ -1,12 +1,16 @@
 extends layout
 
+
 block content
     include components/preloader
     include components/header
 
-    //- Aquí metemos el audio global
+    //- Audio global
     audio#bg-music(autoplay loop muted playsinline)
         source(src="/assets/audio/musica.mp3" type="audio/mpeg")
+
+    div#music-toggle
+        i.fa.fa-music
 
     include components/hero
     include components/verse

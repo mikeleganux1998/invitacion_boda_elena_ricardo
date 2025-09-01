@@ -1,7 +1,6 @@
-(function($) {
+(function ($) {
 
-	"use strict";
-
+    "use strict";
 
 
     /*------------------------------------------
@@ -16,7 +15,7 @@
         var body = $(".page-wrapper");
         var navLinks = $("#navbar > ul > li > a[href^='#']");
 
-        openBtn.on("click", function() {
+        openBtn.on("click", function () {
             if (!navbar.hasClass("slideInn")) {
                 navbar.addClass("slideInn");
                 body.addClass("body-overlay");
@@ -24,7 +23,7 @@
             return false;
         })
 
-        closeBtn.on("click", function() {
+        closeBtn.on("click", function () {
             if (navbar.hasClass("slideInn")) {
                 navbar.removeClass("slideInn");
             }
@@ -32,7 +31,7 @@
             return false;
         })
 
-        navLinks.on("click", function() {
+        navLinks.on("click", function () {
             if (navbar.hasClass("slideInn")) {
                 navbar.removeClass("slideInn");
             }
@@ -71,10 +70,10 @@
         if (windowWidth <= 991) {
             subMenu.hide();
             megamenu.hide();
-            menuItemWidthSubMenu.on("click", function(e) {
+            menuItemWidthSubMenu.on("click", function (e) {
                 var $this = $(this);
                 $this.siblings().slideToggle();
-                 e.preventDefault();
+                e.preventDefault();
                 e.stopImmediatePropagation();
             })
         } else if (windowWidth > 991) {
@@ -97,7 +96,7 @@
             nav_height = nav.outerHeight();
 
 
-        sections.each(function() {
+        sections.each(function () {
             var top = $(this).offset().top - nav_height,
                 bottom = top + $(this).outerHeight();
 
@@ -117,14 +116,14 @@
         var links = $scrollLinks;
         var topGap = $topOffset;
 
-        links.on("click", function() {
-            if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') && location.hostname === this.hostname) {
+        links.on("click", function () {
+            if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
                 var target = $(this.hash);
-                target = target.length ? target : $("[name=" + this.hash.slice(1) +"]");
+                target = target.length ? target : $("[name=" + this.hash.slice(1) + "]");
                 if (target.length) {
                     $("html, body").animate({
-                    scrollTop: target.offset().top - topGap
-                }, 1000, "easeInOutExpo");
+                        scrollTop: target.offset().top - topGap
+                    }, 1000, "easeInOutExpo");
                     return false;
                 }
             }
@@ -136,11 +135,11 @@
     // Parallax background
     function bgParallax() {
         if ($(".parallax").length) {
-            $(".parallax").each(function() {
+            $(".parallax").each(function () {
                 var height = $(this).position().top;
-                var resize     = height - $(window).scrollTop();
-                var doParallax = -(resize/5);
-                var positionValue   = doParallax + "px";
+                var resize = height - $(window).scrollTop();
+                var doParallax = -(resize / 5);
+                var positionValue = doParallax + "px";
                 var img = $(this).data("bg-image");
 
                 $(this).css({
@@ -155,8 +154,8 @@
 
     // SLIDER
     var menu = [];
-    jQuery('.swiper-slide').each( function(index){
-        menu.push( jQuery(this).find('.slide-inner').attr("data-text") );
+    jQuery('.swiper-slide').each(function (index) {
+        menu.push(jQuery(this).find('.slide-inner').attr("data-text"));
     });
     var interleaveOffset = 0.5;
     var swiperOptions = {
@@ -180,30 +179,30 @@
         },
 
         on: {
-            progress: function() {
+            progress: function () {
                 var swiper = this;
                 for (var i = 0; i < swiper.slides.length; i++) {
                     var slideProgress = swiper.slides[i].progress;
                     var innerOffset = swiper.width * interleaveOffset;
                     var innerTranslate = slideProgress * innerOffset;
                     swiper.slides[i].querySelector(".slide-inner").style.transform =
-                    "translate3d(" + innerTranslate + "px, 0, 0)";
-                }      
+                        "translate3d(" + innerTranslate + "px, 0, 0)";
+                }
             },
 
-            touchStart: function() {
-              var swiper = this;
-              for (var i = 0; i < swiper.slides.length; i++) {
-                swiper.slides[i].style.transition = "";
-              }
+            touchStart: function () {
+                var swiper = this;
+                for (var i = 0; i < swiper.slides.length; i++) {
+                    swiper.slides[i].style.transition = "";
+                }
             },
 
-            setTransition: function(speed) {
+            setTransition: function (speed) {
                 var swiper = this;
                 for (var i = 0; i < swiper.slides.length; i++) {
                     swiper.slides[i].style.transition = speed + "ms";
                     swiper.slides[i].querySelector(".slide-inner").style.transition =
-                    speed + "ms";
+                        speed + "ms";
                 }
             }
         }
@@ -213,21 +212,19 @@
 
     // DATA BACKGROUND IMAGE
     var sliderBgSetting = $(".slide-bg-image");
-    sliderBgSetting.each(function(indx){
-        if ($(this).attr("data-background")){
+    sliderBgSetting.each(function (indx) {
+        if ($(this).attr("data-background")) {
             $(this).css("background-image", "url(" + $(this).data("background") + ")");
         }
     });
-
-
 
 
     /*------------------------------------------
         = HIDE PRELOADER
     -------------------------------------------*/
     function preloader() {
-        if($('.preloader').length) {
-            $('.preloader').delay(100).fadeOut(500, function() {
+        if ($('.preloader').length) {
+            $('.preloader').delay(100).fadeOut(500, function () {
 
                 //active wow
                 wow.init();
@@ -241,11 +238,11 @@
         = WOW ANIMATION SETTING
     -------------------------------------------*/
     var wow = new WOW({
-        boxClass:     'wow',      // default
+        boxClass: 'wow',      // default
         animateClass: 'animated', // default
-        offset:       0,          // default
-        mobile:       true,       // default
-        live:         true        // default
+        offset: 0,          // default
+        mobile: true,       // default
+        live: true        // default
     });
 
 
@@ -254,9 +251,9 @@
     -------------------------------------------*/
     if ($(".fancybox").length) {
         $(".fancybox").fancybox({
-            openEffect  : "elastic",
-            closeEffect : "elastic",
-            wrapCSS     : "project-fancybox-title-style"
+            openEffect: "elastic",
+            closeEffect: "elastic",
+            wrapCSS: "project-fancybox-title-style"
         });
     }
 
@@ -265,17 +262,17 @@
         = POPUP VIDEO
     -------------------------------------------*/
     if ($(".video-play-btn").length) {
-        $(".video-play-btn").on("click", function(){
+        $(".video-play-btn").on("click", function () {
             $.fancybox({
                 href: this.href,
                 type: $(this).data("type"),
-                'title'         : this.title,
-                helpers     : {
-                    title : { type : 'inside' },
-                    media : {}
+                'title': this.title,
+                helpers: {
+                    title: {type: 'inside'},
+                    media: {}
                 },
 
-                beforeShow : function(){
+                beforeShow: function () {
                     $(".fancybox-wrap").addClass("gallery-fancybox");
                 }
             });
@@ -305,7 +302,7 @@
             type: 'image',
 
             gallery: {
-              enabled: true
+                enabled: true
             },
 
             zoom: {
@@ -313,7 +310,7 @@
 
                 duration: 300,
                 easing: 'ease-in-out',
-                opener: function(openerElement) {
+                opener: function (openerElement) {
                     return openerElement.is('img') ? openerElement : openerElement.find('img');
                 }
             }
@@ -328,7 +325,7 @@
         if ($(".sortable-gallery .gallery-filters").length) {
             var $container = $('.gallery-container');
             $container.isotope({
-                filter:'*',
+                filter: '*',
                 animationOptions: {
                     duration: 750,
                     easing: 'linear',
@@ -336,12 +333,12 @@
                 }
             });
 
-            $(".gallery-filters li a").on("click", function() {
+            $(".gallery-filters li a").on("click", function () {
                 $('.gallery-filters li .current').removeClass('current');
                 $(this).addClass('current');
                 var selector = $(this).attr('data-filter');
                 $container.isotope({
-                    filter:selector,
+                    filter: selector,
                     animationOptions: {
                         duration: 750,
                         easing: 'linear',
@@ -361,13 +358,13 @@
     -------------------------------------------*/
     function masonryGridSetting() {
         if ($('.masonry-gallery').length) {
-            var $grid =  $('.masonry-gallery').masonry({
+            var $grid = $('.masonry-gallery').masonry({
                 itemSelector: '.grid-item',
                 columnWidth: '.grid-item',
                 percentPosition: true
             });
 
-            $grid.imagesLoaded().progress( function() {
+            $grid.imagesLoaded().progress(function () {
                 $grid.masonry('layout');
             });
         }
@@ -425,9 +422,9 @@
     /*------------------------------------------
         = HERO CURVE TEXT
     -------------------------------------------*/
-    if($("#curve-text").length) {
-        var $curveText   = $('#curve-text').hide();
-        $curveText.show().arctext({radius: 150, dir:1, animation: '300ms'});
+    if ($("#curve-text").length) {
+        var $curveText = $('#curve-text').hide();
+        $curveText.show().arctext({radius: 150, dir: 1, animation: '300ms'});
     }
 
 
@@ -435,12 +432,12 @@
         = COUNTDOWN CLOCK
     -------------------------------------------*/
     if ($("#clock").length) {
-        $('#clock').countdown('2025/10/15', function(event) {
+        $('#clock').countdown('2025/10/15', function (event) {
             var $this = $(this).html(event.strftime(''
-            + '<div class="box"><div><div class="time">%D</div> <span>Dias</span> </div></div>'
-            + '<div class="box"><div><div class="time">%H</div> <span>Horas</span> </div></div>'
-            + '<div class="box"><div><div class="time">%M</div> <span>Mins</span> </div></div>'
-            + '<div class="box"><div><div class="time">%S</div> <span>Seg</span> </div></div>'));
+                + '<div class="box"><div><div class="time">%D</div> <span>Dias</span> </div></div>'
+                + '<div class="box"><div><div class="time">%H</div> <span>Horas</span> </div></div>'
+                + '<div class="box"><div><div class="time">%M</div> <span>Mins</span> </div></div>'
+                + '<div class="box"><div><div class="time">%S</div> <span>Seg</span> </div></div>'));
         });
     }
 
@@ -448,18 +445,18 @@
     /*------------------------------------------
         = POST SLIDER
     -------------------------------------------*/
-    if($(".post-slider".length)) {
+    if ($(".post-slider".length)) {
         $(".post-slider").owlCarousel({
             mouseDrag: false,
             smartSpeed: 500,
             margin: 30,
-            loop:true,
+            loop: true,
             nav: true,
-            navText: ['<i class="fi flaticon-back"></i>','<i class="fi flaticon-next"></i>'],
+            navText: ['<i class="fi flaticon-back"></i>', '<i class="fi flaticon-next"></i>'],
             dots: false,
             items: 1
         });
-    }  
+    }
 
 
     /*------------------------------------------
@@ -494,7 +491,7 @@
         });
 
         // Automatic drops
-        setInterval(function() {
+        setInterval(function () {
             var $el = $('.ripple');
             var x = Math.random() * $el.outerWidth();
             var y = Math.random() * $el.outerHeight();
@@ -504,7 +501,6 @@
             $el.ripples('drop', x, y, dropRadius, strength);
         }, 400);
     }
-    
 
 
     /*------------------------------------------
@@ -513,12 +509,12 @@
     function map() {
 
         var locations = [
-            ['Hotel royal international khulna ', 22.8103888, 89.5619609,1],
-            ['City inn khulna', 22.820884, 89.551216,2],
+            ['Hotel royal international khulna ', 22.8103888, 89.5619609, 1],
+            ['City inn khulna', 22.820884, 89.551216, 2],
         ];
 
         var map = new google.maps.Map(document.getElementById('map'), {
-            center: new google.maps.LatLng( 22.8103888, 89.5619609),
+            center: new google.maps.LatLng(22.8103888, 89.5619609),
             zoom: 12,
             scrollwheel: false,
             mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -530,14 +526,14 @@
         var marker, i;
 
         for (i = 0; i < locations.length; i++) {
-                marker = new google.maps.Marker({
+            marker = new google.maps.Marker({
                 position: new google.maps.LatLng(locations[i][1], locations[i][2]),
                 map: map,
-                icon:'images/map-marker.png'
+                icon: 'images/map-marker.png'
             });
 
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                return function() {
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                return function () {
                     infowindow.setContent(locations[i][0]);
                     infowindow.open(map, marker);
                 }
@@ -552,10 +548,10 @@
     if ($("#rsvp-form").length) {
         $("#rsvp-form").validate({
             rules: {
-                name: { required: true, minlength: 2 },
-                email: { required: true, email: true },
-                phone: { required: true, digits: true, minlength: 10, maxlength: 10 },
-                confirmation: { required: true } // 👈 nuevo campo
+                name: {required: true, minlength: 2},
+                email: {required: true, email: true},
+                phone: {required: true, digits: true, minlength: 10, maxlength: 10},
+                confirmation: {required: true} // 👈 nuevo campo
             },
             messages: {
                 name: "Por favor ingresa tu nombre",
@@ -591,13 +587,13 @@
                         if (response.message) {
                             // mostramos el mensaje que envía el backend
                             $("#success").text(response.message).slideDown("slow");
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 $("#success").slideUp("slow");
                             }, 4000);
                         } else {
                             // mensaje por defecto
                             $("#success").text("Confirmación recibida, gracias.").slideDown("slow");
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 $("#success").slideUp("slow");
                             }, 4000);
                         }
@@ -607,7 +603,7 @@
                     error: function () {
                         $("#loader").hide();
                         $("#error").slideDown("slow");
-                        setTimeout(function() {
+                        setTimeout(function () {
                             $("#error").slideUp("slow");
                         }, 4000);
                     }
@@ -622,25 +618,24 @@
     /*==========================================================================
         WHEN DOCUMENT LOADING
     ==========================================================================*/
-        $(window).on('load', function() {
+    $(window).on('load', function () {
 
-            preloader();
+        preloader();
 
-            toggleMobileNavigation();
+        toggleMobileNavigation();
 
-            smallNavFunctionality();
+        smallNavFunctionality();
 
-            smoothScrolling($("#navbar > ul > li > a[href^='#']"), $(".site-header .navigation").innerHeight());
+        smoothScrolling($("#navbar > ul > li > a[href^='#']"), $(".site-header .navigation").innerHeight());
 
 
-        });
-
+    });
 
 
     /*==========================================================================
         WHEN WINDOW SCROLL
     ==========================================================================*/
-    $(window).on("scroll", function() {
+    $(window).on("scroll", function () {
 
         if ($(".header-style-1").length) {
             stickIt($(".sticky"), "sticky-on", $(".header-style-1 .navigation").offset().top);
@@ -658,12 +653,12 @@
     /*==========================================================================
         WHEN WINDOW RESIZE
     ==========================================================================*/
-    $(window).on("resize", function() {
-        
+    $(window).on("resize", function () {
+
         toggleClassForSmallNav();
 
         clearTimeout($.data(this, 'resizeTimer'));
-        $.data(this, 'resizeTimer', setTimeout(function() {
+        $.data(this, 'resizeTimer', setTimeout(function () {
             smallNavFunctionality();
         }, 200));
 
@@ -674,19 +669,35 @@
 
 
     var audio = $("#bg-music")[0];
+    var isPlaying = false;
 
-    // Safari iOS necesita playsinline y touchstart
-    $(document).one("click touchstart", function() {
+    function activarAudio() {
         audio.muted = false;
         var playPromise = audio.play();
-
         if (playPromise !== undefined) {
-            playPromise.catch(function(error) {
-                console.log("Autoplay bloqueado, usuario debe interactuar:", error);
+            playPromise.then(function () {
+                isPlaying = true;
+                $("#music-toggle i").removeClass("fa-volume-mute").addClass("fa-music");
+            }).catch(function (err) {
+                console.log("Autoplay bloqueado:", err);
             });
         }
-    });
+    }
 
+    // Primer click o scroll activa
+    $(document).one("click", activarAudio);
+    $(window).one("scroll", activarAudio);
+
+    // Toggle play/pause
+    $("#music-toggle").on("click", function () {
+        if (isPlaying) {
+            audio.pause();
+            isPlaying = false;
+            $("#music-toggle i").removeClass("fa-music").addClass("fa-volume-mute");
+        } else {
+            activarAudio();
+        }
+    });
 
 
 })(window.jQuery);
