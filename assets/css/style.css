@@ -2306,6 +2306,21 @@ img {
 /*--------------------------------------------------------------
 #1.2	gallery-section
 --------------------------------------------------------------*/
+
+.masonry-gallery {
+  margin: 0 auto;
+}
+
+.grid-item {
+  width: 30%;   /* o lo que quieras según columnas */
+  margin-bottom: 20px;
+}
+.grid-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .gallery-section {
   padding-top: 60px;
   padding-bottom: 0;

@@ -370,7 +370,7 @@
         }
     }
 
-    // masonryGridSetting();
+    masonryGridSetting();
 
 
     /*------------------------------------------
